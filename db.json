@@ -22,7 +22,7 @@
       "id": 4,
       "name": "Pothos",
       "image": "./images/pothos.jpg",
-      "price": 12.11
+      "price": "15"
     },
     {
       "id": 5,
@@ -41,6 +41,18 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
+    },
+    {
+      "name": "Fiddle Leaf Fig",
+      "image": "./images/fiddle-leaf-fig.jpg",
+      "price": "55",
+      "id": 8
+    },
+    {
+      "name": "Fiddle Leaf Fig",
+      "image": "./images/fiddle-leaf-fig.jpg",
+      "price": 68,
+      "id": 9
     }
   ]
 }
