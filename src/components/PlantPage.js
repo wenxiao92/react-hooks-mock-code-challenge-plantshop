@@ -18,19 +18,24 @@ function PlantPage() {
     const newArray = [...plants, newPlant]
     setPlant(newArray)
   }
-
+  
   function handleUpdate(updatedPlant){
     console.log(updatedPlant)
-    // const updatedPlantsArray = plants.map((plant) => {
-    //   if (plant.id === updatedPlant.id) {
-    //     return updatedPlant;
-    //   } else {
-    //     return plant;
-    //   }
-    // });
-    // setPlant(updatedPlantsArray);
+    const updatedPlantsArray = plants.map((plant) => {
+      if (plant.id === updatedPlant.id) {
+        return updatedPlant;
+      } else {
+        return plant;
+      }
+    });
+    setPlant(updatedPlantsArray);
   }
   
+  function handleDelete(id){
+    const updatedPlants = plants.filter((plant) => plant.id !== id);
+    setPlant(updatedPlants)
+  }
+
   //filters the plants based on the searched state before sending it as a prop to PlantList. We assign
   //the filtered list of plants into displayPlants and use this as a prop instead of the actual state 'plants'
   //alternatively, we can just put the plants.filter within the {} that will get sent as a prop
@@ -42,7 +47,7 @@ function PlantPage() {
     <main>
       <NewPlantForm onAddPlant={handleSubmit}/>
       <Search search={searched} onSearch={setSearch}/>
-      <PlantList data={displayPlants} onUpdatePlant={handleUpdate}/>
+      <PlantList data={displayPlants} onUpdatePlant={handleUpdate} onDeletePlant={handleDelete}/>
     </main>
   );
 }

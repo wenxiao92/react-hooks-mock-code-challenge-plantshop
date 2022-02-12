@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 
-function PlantCard({plantData, onUpdatePlant}) {
+function PlantCard({plantData, onUpdatePlant, onDeletePlant}) {
 
-  console.log(onUpdatePlant)
+  //console.log(onUpdatePlant)
 
   const {id, name, image, price} = plantData;
   const [availability, setAvail] = useState(true)
@@ -23,9 +23,17 @@ function PlantCard({plantData, onUpdatePlant}) {
     })
       .then((r) => r.json())
       .then((updatedPlant) => {
-        console.log(updatedPlant, onUpdatePlant);
-        // onUpdatePlant(updatedPlant);
+        //console.log(updatedPlant, onUpdatePlant);
+        onUpdatePlant(updatedPlant);
       });
+  }
+
+  function handleDeleteClick(e){
+    e.preventDefault();
+    fetch(`http://localhost:6001/plants/${id}`, {
+      method: "DELETE",
+    })
+    onDeletePlant(id)
   }
 
   return (
@@ -38,7 +46,7 @@ function PlantCard({plantData, onUpdatePlant}) {
       ) : (
         <button onClick={changeAvail}>Out of Stock</button>
       )}
-      <button>Delete</button>
+      <button onClick={handleDeleteClick}>Delete</button>
       <form onSubmit={handlePriceFormSubmit}>
         <input
           type="number"
@@ -47,7 +55,7 @@ function PlantCard({plantData, onUpdatePlant}) {
           value={pricing}
           onChange={(e) => setPrice(e.target.value)}
         />
-        <button type="submit">Update Price</button>
+        <button type="submit" >Update Price</button>
       </form>
     </li>
   );
